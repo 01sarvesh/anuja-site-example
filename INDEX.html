@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #text {
+      font-size: 1.6rem;
+      color: #333;
+      max-width: 600px;
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .gif {
+      position: absolute;
+      width: 120px;
+      animation: pop 0.6s ease-out;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="text"></div>
+
+<script>
+  const message =
+    "Hey love 💕\n\n" +
+    "I just wanted you to know how much you mean to me.\n" +
+    "Every day feels better because of you 💖";
+
+  let index = 0;
+  const speed = 50;
+  const textDiv = document.getElementById("text");
+
+  function typeText() {
+    if (index < message.length) {
+      textDiv.innerHTML += message[index] === "\n" ? "<br>" : message[index];
+      index++;
+
+      if (index === 20 || index === 60) {
+        showGif();
+      }
+
+      setTimeout(typeText, speed);
+    }
+  }
+
+  function showGif() {
+    const img = document.createElement("img");
+    img.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXd6bzMxcng1dmxxMDBrcjN6MHR4a2c0OHhyOXZoNDI2a2doM212NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HSCZMUa1ao17h7l5mg/giphy.gif"; // change this
+    img.className = "gif";
+    img.style.top = Math.random() * 70 + "%";
+    img.style.left = Math.random() * 70 + "%";
+    document.body.appendChild(img);
+  }
+
+  typeText();
+</script>
+
+</body>
+</html>
